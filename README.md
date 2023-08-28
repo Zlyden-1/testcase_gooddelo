@@ -2,7 +2,7 @@
 ## Использованные технологии:
 * Приложение-сервер:
   * FastAPI
-  * SQLAlchemy
+  * SQLAlchemy + Alembic
   * PostgreSQL + asyncpg
   * fastapi-cache + redis
 * Приложение-клиент:

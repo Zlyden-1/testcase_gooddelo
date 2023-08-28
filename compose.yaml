@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - database:/var/lib/postgresql/data
+    expose:
+      - '5432'
+
+  redis:
+    image: redis
+    expose:
+      - '6739'
+
+  client:
+    image: m4vdoshin/testcasegooddelo:client
+    command: python main.py
+    depends_on:
+      - server
+
+  server:
+    image: m4vdoshin/testcasegooddelo:server
+    command: python main.py
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  database:
